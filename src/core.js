@@ -93,7 +93,7 @@ const toCSV = (data, headers) => {
 export const buildURI = (data, headers) => {
   const csv = toCSV(data, headers);
   const type = isSafari() ? "application/csv" : "text/csv";
-  const blob = new Blob(["", csv], { type });
+  const blob = new Blob(["\uFEFF", csv], { type });
   const dataURI = `data:${type};charset=utf-8,${""}${csv}`;
 
   const URL = window.URL || window.webkitURL;
